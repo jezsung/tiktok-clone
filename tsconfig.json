@@ -3,5 +3,12 @@
   "compilerOptions": {
     "strict": true
   },
-  "include": ["App.tsx", "components/**/*", "declarations.d.ts"]
+  "include": [
+    "App.tsx",
+    "components/**/*",
+    "hooks/**/*",
+    "api/**/*",
+    "models/**/*",
+    "declarations.d.ts"
+  ]
 }

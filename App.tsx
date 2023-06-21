@@ -9,7 +9,7 @@ import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import SearchIcon from './assets/icons/search.svg';
 import BottomNavigationBar from './components/BottomNavigationBar';
 import CountdownTimer from './components/CountdownTimer';
-import Flashcard from './components/Flashcard';
+import FlashcardList from './components/FlashcardList';
 import TabBar from './components/TabBar';
 
 export default function App() {
@@ -72,21 +72,7 @@ export default function App() {
             />
           </View>
         </SafeAreaView>
-        <View style={{ flex: 1 }}>
-          <Flashcard
-            id={7576}
-            playlist="Period 5: 1844-1882"
-            flashcardFront="The land dispute that contributed to the Mexican-American War was between"
-            flashcardBack="In 1845, when Texas joined the US, Mexico insisted the US had a right only to the territory northeast of the Nueces River. The US argued that it should have title to all land between the Nueces and the Rio Grande as well."
-            description="Topic 5.3: The Mexicanâ€“American War"
-            tag="#apush"
-            user={{
-              name: 'AP US History',
-              avatar:
-                'https://cross-platform-rwa.rp.devfactory.com/avatars/apush.png',
-            }}
-          />
-        </View>
+        <FlashcardList />
         <SafeAreaView edges={['bottom']} style={{ backgroundColor: 'black' }}>
           <BottomNavigationBar />
         </SafeAreaView>

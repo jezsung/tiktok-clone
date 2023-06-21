@@ -1,33 +1,17 @@
+/* eslint-disable import/order */
+
 import { useRef, useState } from 'react';
 import { Animated, Easing, Text, View } from 'react-native';
 
 import ArrowIcon from '../assets/icons/arrow.svg';
 import VideoIcon from '../assets/icons/video.svg';
-// eslint-disable-next-line import/order
+import FlashcardModel from '../models/flashcard-model';
 import ActionBar from './ActionBar';
-// eslint-disable-next-line import/order
 import RatingBar from './RatingBar';
 
 const Flashcard: React.FC<{
-  id: number;
-  playlist: string;
-  flashcardFront: string;
-  flashcardBack: string;
-  description: string;
-  tag: string;
-  user: {
-    name: string;
-    avatar: string;
-  };
-}> = ({
-  id,
-  playlist,
-  flashcardFront,
-  flashcardBack,
-  description,
-  tag,
-  user: { name, avatar },
-}) => {
+  flashcard: FlashcardModel;
+}> = ({ flashcard }) => {
   const [side, setSide] = useState<'front' | 'back'>('front');
   const opacity = useRef(new Animated.Value(1)).current;
 
@@ -59,10 +43,10 @@ const Flashcard: React.FC<{
         {side === 'front' && (
           <Animated.View style={{ opacity }}>
             <Front
-              front={flashcardFront}
-              description={description}
-              tag={tag}
-              username={name}
+              front={flashcard.flashcardFront}
+              description={flashcard.description}
+              tag={flashcard.tag}
+              username={flashcard.user.name}
             />
           </Animated.View>
         )}
@@ -76,16 +60,16 @@ const Flashcard: React.FC<{
             }}
           >
             <Back
-              front={flashcardFront}
-              back={flashcardBack}
-              description={description}
-              tag={tag}
-              username={name}
+              front={flashcard.flashcardFront}
+              back={flashcard.flashcardBack}
+              description={flashcard.description}
+              tag={flashcard.tag}
+              username={flashcard.user.name}
             />
           </Animated.View>
         )}
 
-        <ActionBar avatar={avatar} onFlip={flip} />
+        <ActionBar avatar={flashcard.user.avatar} onFlip={flip} />
       </View>
       <View
         style={{
@@ -107,7 +91,7 @@ const Flashcard: React.FC<{
               lineHeight: 15.51,
             }}
           >
-            {playlist}
+            {flashcard.playlist}
           </Text>
         </View>
         <ArrowIcon width={11} height={16} fill="white" />
