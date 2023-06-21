@@ -48,19 +48,25 @@ export default function App() {
           <View
             style={{
               flexDirection: 'row',
-              justifyContent: 'space-between',
+              justifyContent: 'center',
+              alignItems: 'center',
               alignSelf: 'stretch',
               backgroundColor: 'black',
               padding: 16,
             }}
           >
-            <CountdownTimer />
+            <View style={{ position: 'absolute', left: 16 }}>
+              <CountdownTimer />
+            </View>
             <TabBar
               currentIndex={tabIndex}
               tabs={['Following', 'For You']}
               onTap={(index) => setTabIndex(index)}
             />
-            <SearchIcon fill="white" />
+            <SearchIcon
+              fill="white"
+              style={{ position: 'absolute', right: 16 }}
+            />
           </View>
         </SafeAreaView>
       </LinearGradient>
