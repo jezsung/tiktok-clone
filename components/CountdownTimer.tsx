@@ -21,6 +21,7 @@ const CountdownTimer: React.FC = () => {
         style={{
           color: 'white',
           opacity: 0.6,
+          fontFamily: 'sf-pro-rounded-400',
           fontSize: 14,
           lineHeight: 16.71,
         }}
