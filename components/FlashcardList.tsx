@@ -39,6 +39,7 @@ const FlashcardList: React.FC = () => {
           </View>
         );
       }}
+      // Suffixes the index to prevent duplicate keys for demo purpose.
       keyExtractor={(item, index) => item.id.toString() + index}
       onEndReached={fetchNextPage}
       onEndReachedThreshold={1}
