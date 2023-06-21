@@ -46,7 +46,7 @@ export default function App() {
           alignItems: 'stretch',
         }}
       >
-        <StatusBar style="auto" />
+        <StatusBar style="light" />
         <SafeAreaView edges={['top']} style={{ backgroundColor: 'black' }}>
           <View
             style={{
