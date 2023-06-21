@@ -9,7 +9,7 @@ import Flashcard from './Flashcard';
 
 const FlashcardList: React.FC = () => {
   const fetcher = useCallback(async () => {
-    // Fetches 3 flashcards for each call
+    // Fetches 3 flashcards for each call.
     return Promise.all(Array.from({ length: 3 }, () => fetchFlashcard()));
   }, []);
   const [state, fetchNextPage] = usePagination<FlashcardModel[]>(fetcher);
