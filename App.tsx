@@ -4,7 +4,7 @@ import React from 'react';
 import { View } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 
-import ActivityIcon from './assets/icons/activity.svg';
+import CountdownTimer from './components/CountdownTimer';
 
 export default function App() {
   return (
@@ -24,7 +24,7 @@ export default function App() {
               padding: 16,
             }}
           >
-            <ActivityIcon fill="white" fillOpacity={0.6} />
+            <CountdownTimer />
           </View>
         </SafeAreaView>
       </LinearGradient>
