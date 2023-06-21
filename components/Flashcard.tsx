@@ -5,6 +5,8 @@ import ArrowIcon from '../assets/icons/arrow.svg';
 import VideoIcon from '../assets/icons/video.svg';
 // eslint-disable-next-line import/order
 import ActionBar from './ActionBar';
+// eslint-disable-next-line import/order
+import RatingBar from './RatingBar';
 
 const Flashcard: React.FC<{
   id: number;
@@ -55,7 +57,7 @@ const Flashcard: React.FC<{
         }}
       >
         {side === 'front' && (
-          <Animated.View onTouchEnd={flip} style={{ opacity }}>
+          <Animated.View style={{ opacity }}>
             <Front
               front={flashcardFront}
               description={description}
@@ -66,7 +68,6 @@ const Flashcard: React.FC<{
         )}
         {side === 'back' && (
           <Animated.View
-            onTouchEnd={flip}
             style={{
               opacity: opacity.interpolate({
                 inputRange: [0, 1],
@@ -277,52 +278,7 @@ const Back: React.FC<{
             >
               How well did you know this?
             </Text>
-            <View style={{ flexDirection: 'row', gap: 8 }}>
-              {[1, 2, 3, 4, 5].map((rating) => {
-                const color = (() => {
-                  switch (rating) {
-                    case 1:
-                      return '#F17D23';
-                    case 2:
-                      return '#FBB668';
-                    case 3:
-                      return '#FFD449';
-                    case 4:
-                      return '#16624F';
-                    case 5:
-                      return '#1F8A70';
-                    default:
-                      throw new Error('Unimplemented rating color');
-                  }
-                })();
-
-                return (
-                  <View
-                    key={rating}
-                    style={{
-                      flex: 1,
-                      flexDirection: 'column',
-                      justifyContent: 'center',
-                      alignItems: 'center',
-                      height: 52,
-                      backgroundColor: color,
-                      borderRadius: 8,
-                    }}
-                  >
-                    <Text
-                      style={{
-                        color: 'white',
-                        fontFamily: 'sf-pro-rounded-600',
-                        fontSize: 17,
-                        lineHeight: 20.29,
-                      }}
-                    >
-                      {rating}
-                    </Text>
-                  </View>
-                );
-              })}
-            </View>
+            <RatingBar />
           </View>
         </View>
       </View>
