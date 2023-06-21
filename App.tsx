@@ -2,13 +2,16 @@ import { useFonts } from 'expo-font';
 import { LinearGradient } from 'expo-linear-gradient';
 import * as SplashScreen from 'expo-splash-screen';
 import { StatusBar } from 'expo-status-bar';
-import React, { useCallback } from 'react';
+import React, { useCallback, useState } from 'react';
 import { View } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 
 import CountdownTimer from './components/CountdownTimer';
+import TabBar from './components/TabBar';
 
 export default function App() {
+  const [tabIndex, setTabIndex] = useState(0);
+
   const [fontsLoaded] = useFonts({
     'sf-pro-rounded-100': require('./assets/fonts/SF-Pro-Rounded-Ultralight.otf'),
     'sf-pro-rounded-200': require('./assets/fonts/SF-Pro-Rounded-Thin.otf'),
@@ -43,12 +46,18 @@ export default function App() {
         <SafeAreaView>
           <View
             style={{
+              flexDirection: 'row',
               alignSelf: 'stretch',
               backgroundColor: 'black',
               padding: 16,
             }}
           >
             <CountdownTimer />
+            <TabBar
+              currentIndex={tabIndex}
+              tabs={['Following', 'For You']}
+              onTap={(index) => setTabIndex(index)}
+            />
           </View>
         </SafeAreaView>
       </LinearGradient>
