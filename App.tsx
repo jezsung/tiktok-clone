@@ -7,6 +7,7 @@ import { View } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 
 import SearchIcon from './assets/icons/search.svg';
+import BottomNavigationBar from './components/BottomNavigationBar';
 import CountdownTimer from './components/CountdownTimer';
 import TabBar from './components/TabBar';
 
@@ -41,6 +42,8 @@ export default function App() {
         colors={['#001D28', '#00425A']}
         style={{
           flex: 1,
+          flexDirection: 'column',
+          alignItems: 'stretch',
         }}
       >
         <StatusBar style="auto" />
@@ -50,7 +53,6 @@ export default function App() {
               flexDirection: 'row',
               justifyContent: 'center',
               alignItems: 'center',
-              alignSelf: 'stretch',
               backgroundColor: 'black',
               padding: 16,
             }}
@@ -68,6 +70,10 @@ export default function App() {
               style={{ position: 'absolute', right: 16 }}
             />
           </View>
+        </SafeAreaView>
+        <View style={{ flex: 1 }}></View>
+        <SafeAreaView edges={['bottom']} style={{ backgroundColor: 'black' }}>
+          <BottomNavigationBar />
         </SafeAreaView>
       </LinearGradient>
     </SafeAreaProvider>
