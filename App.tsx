@@ -6,6 +6,7 @@ import React, { useCallback, useState } from 'react';
 import { View } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 
+import SearchIcon from './assets/icons/search.svg';
 import CountdownTimer from './components/CountdownTimer';
 import TabBar from './components/TabBar';
 
@@ -47,6 +48,7 @@ export default function App() {
           <View
             style={{
               flexDirection: 'row',
+              justifyContent: 'space-between',
               alignSelf: 'stretch',
               backgroundColor: 'black',
               padding: 16,
@@ -58,6 +60,7 @@ export default function App() {
               tabs={['Following', 'For You']}
               onTap={(index) => setTabIndex(index)}
             />
+            <SearchIcon fill="white" />
           </View>
         </SafeAreaView>
       </LinearGradient>
