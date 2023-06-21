@@ -41,7 +41,7 @@ const Flashcard: React.FC<{
         }}
       >
         {side === 'front' && (
-          <Animated.View style={{ opacity }}>
+          <Animated.View style={{ flex: 1, opacity }}>
             <Front
               front={flashcard.flashcardFront}
               description={flashcard.description}
@@ -53,6 +53,7 @@ const Flashcard: React.FC<{
         {side === 'back' && (
           <Animated.View
             style={{
+              flex: 1,
               opacity: opacity.interpolate({
                 inputRange: [0, 1],
                 outputRange: [1, 0],
