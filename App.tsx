@@ -47,7 +47,7 @@ export default function App() {
         }}
       >
         <StatusBar style="auto" />
-        <SafeAreaView edges={['top']}>
+        <SafeAreaView edges={['top']} style={{ backgroundColor: 'black' }}>
           <View
             style={{
               flexDirection: 'row',
