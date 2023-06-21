@@ -47,12 +47,12 @@ const ActionBar: React.FC<{
         label="203"
       />
       <ActionItem
-        icon={<ShareIcon width={30} height={30} fill="white" />}
+        icon={<ShareIcon width={26.08} height={25.18} fill="white" />}
         label="17"
       />
       <Pressable onPress={onFlip}>
         <ActionItem
-          icon={<FlipIcon width={30} height={30} fill="white" />}
+          icon={<FlipIcon width={38} height={38} fill="white" />}
           label="Flip"
         />
       </Pressable>
