@@ -1,15 +1,13 @@
-/* eslint-disable import/order */
+import { useState } from 'react';
 import { Text, View } from 'react-native';
 
-import { useState } from 'react';
-
+import ActionBar from './ActionBar';
+import Metadata from './Metadata';
+import Playlist from './Playlist';
 import MultipleChoiceQuestionAnswerModel from '../types/muliple-choice-question-answer';
 import MultipleChoiceQuestionModel, {
   OptionId,
 } from '../types/multiple-choice-question-model';
-import ActionBar from './ActionBar';
-import Metadata from './Metadata';
-import Playlist from './Playlist';
 
 const MultipleChoiceQuestion: React.FC<{
   mcq: MultipleChoiceQuestionModel;

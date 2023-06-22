@@ -1,4 +1,4 @@
-/* eslint-disable import/order */
+import { registerRootComponent } from 'expo';
 import { useFonts } from 'expo-font';
 import { LinearGradient } from 'expo-linear-gradient';
 import * as SplashScreen from 'expo-splash-screen';
@@ -7,8 +7,6 @@ import React, { useCallback, useState } from 'react';
 import { View } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 
-import { registerRootComponent } from 'expo';
-import SearchIcon from '../assets/icons/search.svg';
 import BottomNavigationBar from './components/BottomNavigationBar';
 import CountdownTimer from './components/CountdownTimer';
 import FlashcardList from './components/FlashcardList';
@@ -17,6 +15,7 @@ import TabBar from './components/TabBar';
 import MultipleChoiceQuestionAnswerModel from './types/muliple-choice-question-answer';
 import MultipleChoiceQuestionModel from './types/multiple-choice-question-model';
 import UserModel from './types/user-model';
+import SearchIcon from '../assets/icons/search.svg';
 
 export default function App() {
   const [tabIndex, setTabIndex] = useState(0);

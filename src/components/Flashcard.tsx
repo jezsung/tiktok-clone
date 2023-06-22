@@ -1,13 +1,11 @@
-/* eslint-disable import/order */
-
 import { useRef, useState } from 'react';
 import { Animated, Easing, Text, View } from 'react-native';
 
-import FlashcardModel from '../types/flashcard-model';
 import ActionBar from './ActionBar';
 import Metadata from './Metadata';
 import Playlist from './Playlist';
 import RatingBar from './RatingBar';
+import FlashcardModel from '../types/flashcard-model';
 
 const Flashcard: React.FC<{
   flashcard: FlashcardModel;

@@ -1,11 +1,10 @@
-/* eslint-disable import/order */
 import { useCallback, useState } from 'react';
 import { ActivityIndicator, FlatList, Text, View } from 'react-native';
 
+import Flashcard from './Flashcard';
 import fetchFlashcard from '../api/fetch-flashcard';
 import usePagination from '../hooks/use-pagination';
 import FlashcardModel from '../types/flashcard-model';
-import Flashcard from './Flashcard';
 
 const FlashcardList: React.FC = () => {
   const fetcher = useCallback(async () => {
