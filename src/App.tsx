@@ -80,13 +80,16 @@ export default function App() {
           />
         </View>
       </SafeAreaView>
-      {tabIndex === 0 && (
-        <FlashcardList
-          flashcards={state.pages.flat()}
-          onEndReached={fetchMoreFlashcards}
-          onEndReachedThreshold={1}
-        />
-      )}
+      {tabIndex === 0 &&
+        (state.pages.length > 0 ? (
+          <FlashcardList
+            flashcards={state.pages.flat()}
+            onEndReached={fetchMoreFlashcards}
+            onEndReachedThreshold={1}
+          />
+        ) : (
+          <ActivityIndicator style={{ flex: 1 }} />
+        ))}
       {tabIndex === 1 &&
         (mcq && mcqAnswer ? (
           <MultipleChoiceQuestion mcq={mcq} answer={mcqAnswer} />
