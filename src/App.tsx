@@ -20,6 +20,91 @@ import SearchIcon from '../assets/icons/search.svg';
 export default function App() {
   const [tabIndex, setTabIndex] = useState(0);
 
+  return (
+    <LinearGradient
+      colors={['#001D28', '#00425A']}
+      style={{
+        flex: 1,
+        flexDirection: 'column',
+        alignItems: 'stretch',
+      }}
+    >
+      <StatusBar style="light" />
+      <SafeAreaView edges={['top']} style={{ backgroundColor: 'black' }}>
+        <View
+          style={{
+            flexDirection: 'row',
+            justifyContent: 'center',
+            alignItems: 'center',
+            backgroundColor: 'black',
+            padding: 16,
+          }}
+        >
+          <View style={{ position: 'absolute', left: 16 }}>
+            <CountdownTimer />
+          </View>
+          <TabBar
+            currentIndex={tabIndex}
+            tabs={['Following', 'For You']}
+            onTap={(index) => setTabIndex(index)}
+          />
+          <SearchIcon
+            fill="white"
+            style={{ position: 'absolute', right: 16 }}
+          />
+        </View>
+      </SafeAreaView>
+      {tabIndex === 0 && <FlashcardList />}
+      {tabIndex === 1 && (
+        <MultipleChoiceQuestion
+          mcq={
+            new MultipleChoiceQuestionModel(
+              6194,
+              'Period 6: 1865-1898',
+              '5.5 Sectional Conflict: Regional Differences #apush',
+              'https://cross-platform-rwa.rp.devfactory.com/images/6194%20-%20black%20people%20after%20slavery.png',
+              'What did it mean when defenders of slavery called it a "positive social good"?',
+              [
+                {
+                  id: 'A',
+                  answer:
+                    'Slavery gave black people a better life than if they lived in a free society',
+                },
+                {
+                  id: 'B',
+                  answer:
+                    'Slavery created a power structure that defined morality for everyone',
+                },
+                {
+                  id: 'C',
+                  answer: 'Slavery was essential for the economy to prosper',
+                },
+              ],
+              new UserModel(
+                'AP US History',
+                'https://cross-platform-rwa.rp.devfactory.com/avatars/apush.png'
+              )
+            )
+          }
+          answer={
+            new MultipleChoiceQuestionAnswerModel(6194, [
+              {
+                id: 'A',
+                answer:
+                  'Slavery gave black people a better life than if they lived in a free society"',
+              },
+            ])
+          }
+        />
+      )}
+      <SafeAreaView edges={['bottom']} style={{ backgroundColor: 'black' }}>
+        <BottomNavigationBar />
+      </SafeAreaView>
+    </LinearGradient>
+  );
+}
+
+registerRootComponent(() => {
   const [fontsLoaded] = useFonts({
     'sf-pro-rounded-100': require('../assets/fonts/SF-Pro-Rounded-Ultralight.otf'),
     'sf-pro-rounded-200': require('../assets/fonts/SF-Pro-Rounded-Thin.otf'),
@@ -44,88 +129,7 @@ export default function App() {
 
   return (
     <SafeAreaProvider onLayout={onLayoutRootView}>
-      <LinearGradient
-        colors={['#001D28', '#00425A']}
-        style={{
-          flex: 1,
-          flexDirection: 'column',
-          alignItems: 'stretch',
-        }}
-      >
-        <StatusBar style="light" />
-        <SafeAreaView edges={['top']} style={{ backgroundColor: 'black' }}>
-          <View
-            style={{
-              flexDirection: 'row',
-              justifyContent: 'center',
-              alignItems: 'center',
-              backgroundColor: 'black',
-              padding: 16,
-            }}
-          >
-            <View style={{ position: 'absolute', left: 16 }}>
-              <CountdownTimer />
-            </View>
-            <TabBar
-              currentIndex={tabIndex}
-              tabs={['Following', 'For You']}
-              onTap={(index) => setTabIndex(index)}
-            />
-            <SearchIcon
-              fill="white"
-              style={{ position: 'absolute', right: 16 }}
-            />
-          </View>
-        </SafeAreaView>
-        {tabIndex === 0 && <FlashcardList />}
-        {tabIndex === 1 && (
-          <MultipleChoiceQuestion
-            mcq={
-              new MultipleChoiceQuestionModel(
-                6194,
-                'Period 6: 1865-1898',
-                '5.5 Sectional Conflict: Regional Differences #apush',
-                'https://cross-platform-rwa.rp.devfactory.com/images/6194%20-%20black%20people%20after%20slavery.png',
-                'What did it mean when defenders of slavery called it a "positive social good"?',
-                [
-                  {
-                    id: 'A',
-                    answer:
-                      'Slavery gave black people a better life than if they lived in a free society',
-                  },
-                  {
-                    id: 'B',
-                    answer:
-                      'Slavery created a power structure that defined morality for everyone',
-                  },
-                  {
-                    id: 'C',
-                    answer: 'Slavery was essential for the economy to prosper',
-                  },
-                ],
-                new UserModel(
-                  'AP US History',
-                  'https://cross-platform-rwa.rp.devfactory.com/avatars/apush.png'
-                )
-              )
-            }
-            answer={
-              new MultipleChoiceQuestionAnswerModel(6194, [
-                {
-                  id: 'A',
-                  answer:
-                    'Slavery gave black people a better life than if they lived in a free society"',
-                },
-              ])
-            }
-          />
-        )}
-        <SafeAreaView edges={['bottom']} style={{ backgroundColor: 'black' }}>
-          <BottomNavigationBar />
-        </SafeAreaView>
-      </LinearGradient>
+      <App />
     </SafeAreaProvider>
   );
-}
-
-registerRootComponent(App);
+});
