@@ -75,6 +75,17 @@ export default function App() {
           opacity: tabIndex !== 1 || !mcq ? 0 : 1,
         }}
       />
+      <View
+        style={{
+          position: 'absolute',
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+          backgroundColor: '#00000073',
+          opacity: tabIndex !== 1 || !mcq ? 0 : 1,
+        }}
+      />
 
       <StatusBar style="light" />
       <SafeAreaView
