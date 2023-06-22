@@ -4,14 +4,12 @@ import { Text, View } from 'react-native';
 import ActionBar from './ActionBar';
 import Metadata from './Metadata';
 import Playlist from './Playlist';
-import MultipleChoiceQuestionAnswerModel from '../types/muliple-choice-question-answer';
-import MultipleChoiceQuestionModel, {
-  OptionId,
-} from '../types/multiple-choice-question-model';
+import McqAnswerModel from '../types/mcq-answer-model';
+import McqModel, { OptionId } from '../types/mcq-model';
 
 const MultipleChoiceQuestion: React.FC<{
-  mcq: MultipleChoiceQuestionModel;
-  answer: MultipleChoiceQuestionAnswerModel;
+  mcq: McqModel;
+  answer: McqAnswerModel;
 }> = ({ mcq, answer }) => {
   const [selectedAnswerId, setSelectedAnswerId] = useState<OptionId | null>(
     null

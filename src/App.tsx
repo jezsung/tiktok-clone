@@ -12,8 +12,8 @@ import CountdownTimer from './components/CountdownTimer';
 import FlashcardList from './components/FlashcardList';
 import MultipleChoiceQuestion from './components/MultipleChoiceQuestion';
 import TabBar from './components/TabBar';
-import MultipleChoiceQuestionAnswerModel from './types/muliple-choice-question-answer';
-import MultipleChoiceQuestionModel from './types/multiple-choice-question-model';
+import McqAnswerModel from './types/mcq-answer-model';
+import McqModel from './types/mcq-model';
 import UserModel from './types/user-model';
 import SearchIcon from '../assets/icons/search.svg';
 
@@ -58,7 +58,7 @@ export default function App() {
       {tabIndex === 1 && (
         <MultipleChoiceQuestion
           mcq={
-            new MultipleChoiceQuestionModel(
+            new McqModel(
               6194,
               'Period 6: 1865-1898',
               '5.5 Sectional Conflict: Regional Differences #apush',
@@ -87,7 +87,7 @@ export default function App() {
             )
           }
           answer={
-            new MultipleChoiceQuestionAnswerModel(6194, [
+            new McqAnswerModel(6194, [
               {
                 id: 'A',
                 answer:

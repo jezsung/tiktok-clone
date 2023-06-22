@@ -7,7 +7,7 @@ export interface Option {
   answer: string;
 }
 
-export default class MultipleChoiceQuestionModel {
+export default class McqModel {
   id: number;
   playlist: string;
   description: string;
@@ -34,8 +34,8 @@ export default class MultipleChoiceQuestionModel {
     this.user = user;
   }
 
-  static fromJson(json: any): MultipleChoiceQuestionModel {
-    return new MultipleChoiceQuestionModel(
+  static fromJson(json: any): McqModel {
+    return new McqModel(
       json['id'],
       json['playlist'],
       json['description'],
