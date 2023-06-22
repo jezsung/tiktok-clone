@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 type Status = 'idle' | 'loading' | 'loading-more' | 'success' | 'error';
 
@@ -10,7 +10,7 @@ interface State<T> {
 
 function usePagination<T>(
   fetcher: () => Promise<T>
-): [State<T>, () => Promise<void>] {
+): [State<T>, () => Promise<void>, () => Promise<void>] {
   const [state, setState] = useState<State<T>>({
     status: 'idle',
     pages: [],
@@ -51,11 +51,7 @@ function usePagination<T>(
     }
   }
 
-  useEffect(() => {
-    fetch();
-  }, [fetcher]);
-
-  return [state, fetchNextPage];
+  return [state, fetch, fetchNextPage];
 }
 
 export default usePagination;
