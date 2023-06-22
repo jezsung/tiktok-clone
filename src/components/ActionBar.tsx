@@ -10,7 +10,7 @@ const PROFILE_SIZE = 45;
 
 const ActionBar: React.FC<{
   avatar: string;
-  onFlip: () => void;
+  onFlip?: () => void | undefined;
 }> = ({ avatar, onFlip }) => {
   return (
     <View
@@ -50,12 +50,14 @@ const ActionBar: React.FC<{
         icon={<ShareIcon width={26.08} height={25.18} fill="white" />}
         label="17"
       />
-      <Pressable onPress={onFlip}>
-        <ActionItem
-          icon={<FlipIcon width={38} height={38} fill="white" />}
-          label="Flip"
-        />
-      </Pressable>
+      {onFlip && (
+        <Pressable onPress={onFlip}>
+          <ActionItem
+            icon={<FlipIcon width={38} height={38} fill="white" />}
+            label="Flip"
+          />
+        </Pressable>
+      )}
     </View>
   );
 };
