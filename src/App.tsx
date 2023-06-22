@@ -4,7 +4,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 import * as SplashScreen from 'expo-splash-screen';
 import { StatusBar } from 'expo-status-bar';
 import React, { useCallback, useEffect, useState } from 'react';
-import { ActivityIndicator, View } from 'react-native';
+import { ActivityIndicator, View, Image } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 
 import fetchFlashcard from './api/fetch-flashcard';
@@ -47,22 +47,46 @@ export default function App() {
   }, []);
 
   return (
-    <LinearGradient
-      colors={['#001D28', '#00425A']}
+    <View
       style={{
         flex: 1,
         flexDirection: 'column',
         alignItems: 'stretch',
       }}
     >
+      <LinearGradient
+        colors={['#001D28', '#00425A']}
+        style={{
+          position: 'absolute',
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+        }}
+      />
+      <Image
+        source={{ uri: mcq?.image }}
+        style={{
+          position: 'absolute',
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+          opacity: tabIndex !== 1 || !mcq ? 0 : 1,
+        }}
+      />
+
       <StatusBar style="light" />
-      <SafeAreaView edges={['top']} style={{ backgroundColor: 'black' }}>
+      <SafeAreaView
+        edges={['top']}
+        style={{ backgroundColor: tabIndex === 1 ? 'transparent' : 'black' }}
+      >
         <View
           style={{
             flexDirection: 'row',
             justifyContent: 'center',
             alignItems: 'center',
-            backgroundColor: 'black',
+            backgroundColor: tabIndex === 1 ? 'transparent' : 'black',
             padding: 16,
           }}
         >
@@ -99,7 +123,7 @@ export default function App() {
       <SafeAreaView edges={['bottom']} style={{ backgroundColor: 'black' }}>
         <BottomNavigationBar />
       </SafeAreaView>
-    </LinearGradient>
+    </View>
   );
 }
 
