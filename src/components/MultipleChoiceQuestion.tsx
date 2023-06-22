@@ -115,7 +115,7 @@ const MultipleChoiceQuestion: React.FC<{
           </View>
           <Metadata username={mcq.user.name} description={mcq.description} />
         </View>
-        <ActionBar avatar={mcq.user.avatar} />
+        <ActionBar avatar={mcq.user.avatar} onProfilePress={() => {}} />
       </View>
       <Playlist playlist={mcq.playlist} />
     </View>

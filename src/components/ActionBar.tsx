@@ -4,14 +4,16 @@ import BookmarkIcon from '../../assets/icons/bookmark.svg';
 import CommentIcon from '../../assets/icons/comment.svg';
 import FlipIcon from '../../assets/icons/flip.svg';
 import HeartIcon from '../../assets/icons/heart.svg';
+import PlusIcon from '../../assets/icons/plus.svg';
 import ShareIcon from '../../assets/icons/share.svg';
 
 const PROFILE_SIZE = 45;
 
 const ActionBar: React.FC<{
   avatar: string;
+  onProfilePress?: () => void | undefined;
   onFlip?: () => void | undefined;
-}> = ({ avatar, onFlip }) => {
+}> = ({ avatar, onProfilePress, onFlip }) => {
   return (
     <View
       style={{
@@ -22,16 +24,34 @@ const ActionBar: React.FC<{
     >
       <ActionItem
         icon={
-          <Image
-            source={{ uri: avatar }}
-            style={{
-              width: PROFILE_SIZE,
-              height: PROFILE_SIZE,
-              borderColor: 'white',
-              borderWidth: 1,
-              borderRadius: PROFILE_SIZE / 2,
-            }}
-          />
+          <View style={{ height: 53 }}>
+            <Image
+              source={{ uri: avatar }}
+              style={{
+                width: PROFILE_SIZE,
+                height: PROFILE_SIZE,
+                borderColor: 'white',
+                borderWidth: 1,
+                borderRadius: PROFILE_SIZE / 2,
+              }}
+            />
+            <View
+              style={{
+                justifyContent: 'center',
+                alignItems: 'center',
+                alignSelf: 'center',
+                position: 'absolute',
+                bottom: 0,
+                width: 22,
+                height: 22,
+                borderRadius: 22 / 2,
+                backgroundColor: '#28B18F',
+                opacity: onProfilePress ? 1 : 0,
+              }}
+            >
+              <PlusIcon width={11} height={11} fill="white" />
+            </View>
+          </View>
         }
       />
       <ActionItem
