@@ -1,7 +1,7 @@
 import { Text, View } from 'react-native';
 
-import ArrowIcon from '../assets/icons/arrow.svg';
-import VideoIcon from '../assets/icons/video.svg';
+import ArrowIcon from '../../assets/icons/arrow.svg';
+import VideoIcon from '../../assets/icons/video.svg';
 
 const Playlist: React.FC<{
   playlist: string;

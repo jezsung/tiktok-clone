@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Text, View } from 'react-native';
 
-import ActivityIcon from '../assets/icons/activity.svg';
+import ActivityIcon from '../../assets/icons/activity.svg';
 
 const CountdownTimer: React.FC = () => {
   const [timeSpentInMilliseconds, setTimeSpentInMilliseconds] = useState(0);

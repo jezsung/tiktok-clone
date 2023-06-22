@@ -1,10 +1,10 @@
 import { Image, Pressable, Text, View } from 'react-native';
 
-import BookmarkIcon from '../assets/icons/bookmark.svg';
-import CommentIcon from '../assets/icons/comment.svg';
-import FlipIcon from '../assets/icons/flip.svg';
-import HeartIcon from '../assets/icons/heart.svg';
-import ShareIcon from '../assets/icons/share.svg';
+import BookmarkIcon from '../../assets/icons/bookmark.svg';
+import CommentIcon from '../../assets/icons/comment.svg';
+import FlipIcon from '../../assets/icons/flip.svg';
+import HeartIcon from '../../assets/icons/heart.svg';
+import ShareIcon from '../../assets/icons/share.svg';
 
 const PROFILE_SIZE = 45;
 

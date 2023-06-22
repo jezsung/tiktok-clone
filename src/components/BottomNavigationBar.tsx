@@ -1,10 +1,10 @@
 import { Text, View } from 'react-native';
 
-import ActivityIcon from '../assets/icons/activity.svg';
-import BookmarkIcon from '../assets/icons/bookmark.svg';
-import DiscoverIcon from '../assets/icons/discover.svg';
-import HomeIcon from '../assets/icons/home.svg';
-import ProfileIcon from '../assets/icons/profile.svg';
+import ActivityIcon from '../../assets/icons/activity.svg';
+import BookmarkIcon from '../../assets/icons/bookmark.svg';
+import DiscoverIcon from '../../assets/icons/discover.svg';
+import HomeIcon from '../../assets/icons/home.svg';
+import ProfileIcon from '../../assets/icons/profile.svg';
 
 const BottomNavigationBar: React.FC = () => {
   return (
