@@ -22,6 +22,14 @@ import McqModel from './types/mcq-model';
 import SearchIcon from '../assets/icons/search.svg';
 
 export default function App() {
+  // Can get the user preference theme from the system like below.
+  // Theme changing is not implemented due to the lack of design specification.
+
+  // const colorScheme = useColorScheme();
+  // if (colorScheme === 'light') {
+  // } else if (colorScheme === 'dark') {
+  // }
+
   const [tabIndex, setTabIndex] = useState(0);
 
   const fetcher = useCallback(async () => {
