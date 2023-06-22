@@ -61,7 +61,8 @@ const BottomNavigationItem: React.FC<{
       <Text
         style={{
           color: 'white',
-          fontFamily: 'sf-pro-rounded-500',
+          // The design spec has 500 weight but I had to make it 400 to make the label one-line.
+          fontFamily: 'sf-pro-rounded-400',
           fontSize: 10,
           lineHeight: 11.93,
           textAlign: 'center',
