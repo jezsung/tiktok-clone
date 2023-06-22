@@ -3,10 +3,12 @@ import { useFonts } from 'expo-font';
 import { LinearGradient } from 'expo-linear-gradient';
 import * as SplashScreen from 'expo-splash-screen';
 import { StatusBar } from 'expo-status-bar';
-import React, { useCallback, useState } from 'react';
-import { View } from 'react-native';
+import React, { useCallback, useEffect, useState } from 'react';
+import { ActivityIndicator, View } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 
+import fetchMcq from './api/fetch-mcq';
+import fetchMcqAnswer from './api/fetch-mcq-answer';
 import BottomNavigationBar from './components/BottomNavigationBar';
 import CountdownTimer from './components/CountdownTimer';
 import FlashcardList from './components/FlashcardList';
@@ -14,11 +16,22 @@ import MultipleChoiceQuestion from './components/MultipleChoiceQuestion';
 import TabBar from './components/TabBar';
 import McqAnswerModel from './types/mcq-answer-model';
 import McqModel from './types/mcq-model';
-import UserModel from './types/user-model';
 import SearchIcon from '../assets/icons/search.svg';
 
 export default function App() {
   const [tabIndex, setTabIndex] = useState(0);
+  const [mcq, setMcq] = useState<McqModel | undefined>();
+  const [mcqAnswer, setMcqAnswer] = useState<McqAnswerModel | undefined>();
+
+  useEffect(() => {
+    (async () => {
+      const fetchedMcq = await fetchMcq();
+      const fetchedMcqAnswer = await fetchMcqAnswer(fetchedMcq.id);
+
+      setMcq(fetchedMcq);
+      setMcqAnswer(fetchedMcqAnswer);
+    })();
+  }, []);
 
   return (
     <LinearGradient
@@ -55,48 +68,12 @@ export default function App() {
         </View>
       </SafeAreaView>
       {tabIndex === 0 && <FlashcardList />}
-      {tabIndex === 1 && (
-        <MultipleChoiceQuestion
-          mcq={
-            new McqModel(
-              6194,
-              'Period 6: 1865-1898',
-              '5.5 Sectional Conflict: Regional Differences #apush',
-              'https://cross-platform-rwa.rp.devfactory.com/images/6194%20-%20black%20people%20after%20slavery.png',
-              'What did it mean when defenders of slavery called it a "positive social good"?',
-              [
-                {
-                  id: 'A',
-                  answer:
-                    'Slavery gave black people a better life than if they lived in a free society',
-                },
-                {
-                  id: 'B',
-                  answer:
-                    'Slavery created a power structure that defined morality for everyone',
-                },
-                {
-                  id: 'C',
-                  answer: 'Slavery was essential for the economy to prosper',
-                },
-              ],
-              new UserModel(
-                'AP US History',
-                'https://cross-platform-rwa.rp.devfactory.com/avatars/apush.png'
-              )
-            )
-          }
-          answer={
-            new McqAnswerModel(6194, [
-              {
-                id: 'A',
-                answer:
-                  'Slavery gave black people a better life than if they lived in a free society"',
-              },
-            ])
-          }
-        />
-      )}
+      {tabIndex === 1 &&
+        (mcq && mcqAnswer ? (
+          <MultipleChoiceQuestion mcq={mcq} answer={mcqAnswer} />
+        ) : (
+          <ActivityIndicator style={{ flex: 1 }} />
+        ))}
       <SafeAreaView edges={['bottom']} style={{ backgroundColor: 'black' }}>
         <BottomNavigationBar />
       </SafeAreaView>
