@@ -50,6 +50,10 @@ const MultipleChoiceQuestion: React.FC<{
                   fontFamily: 'sf-pro-rounded-500',
                   fontSize: 22,
                   lineHeight: 26.25,
+                  backgroundColor: '#00000099',
+                  borderRadius: 8,
+                  overflow: 'hidden',
+                  padding: 6,
                 }}
               >
                 {mcq.question}
