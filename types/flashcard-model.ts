@@ -6,7 +6,6 @@ export default class FlashcardModel {
   flashcardFront: string;
   flashcardBack: string;
   description: string;
-  tag: string;
   user: UserModel;
 
   constructor(
@@ -15,7 +14,6 @@ export default class FlashcardModel {
     flashcardFront: string,
     flashcardBack: string,
     description: string,
-    tag: string,
     user: UserModel
   ) {
     this.id = id;
@@ -23,7 +21,6 @@ export default class FlashcardModel {
     this.flashcardFront = flashcardFront;
     this.flashcardBack = flashcardBack;
     this.description = description;
-    this.tag = tag;
     this.user = user;
   }
 
@@ -33,8 +30,7 @@ export default class FlashcardModel {
       json['playlist'],
       json['flashcard_front'],
       json['flashcard_back'],
-      (json['description'] as string).split(' #')[1],
-      '#' + (json['description'] as string).split(' #')[2],
+      json['description'],
       UserModel.fromJson(json['user'])
     );
   }

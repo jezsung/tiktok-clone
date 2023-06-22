@@ -10,7 +10,11 @@ import SearchIcon from './assets/icons/search.svg';
 import BottomNavigationBar from './components/BottomNavigationBar';
 import CountdownTimer from './components/CountdownTimer';
 import FlashcardList from './components/FlashcardList';
+import MultipleChoiceQuestion from './components/MultipleChoiceQuestion';
 import TabBar from './components/TabBar';
+import MultipleChoiceQuestionAnswerModel from './types/muliple-choice-question-answer';
+import MultipleChoiceQuestionModel from './types/multiple-choice-question-model';
+import UserModel from './types/user-model';
 
 export default function App() {
   const [tabIndex, setTabIndex] = useState(0);
@@ -72,7 +76,49 @@ export default function App() {
             />
           </View>
         </SafeAreaView>
-        <FlashcardList />
+        {tabIndex === 0 && <FlashcardList />}
+        {tabIndex === 1 && (
+          <MultipleChoiceQuestion
+            mcq={
+              new MultipleChoiceQuestionModel(
+                6194,
+                'Period 6: 1865-1898',
+                '5.5 Sectional Conflict: Regional Differences #apush',
+                'https://cross-platform-rwa.rp.devfactory.com/images/6194%20-%20black%20people%20after%20slavery.png',
+                'What did it mean when defenders of slavery called it a "positive social good"?',
+                [
+                  {
+                    id: 'A',
+                    answer:
+                      'Slavery gave black people a better life than if they lived in a free society',
+                  },
+                  {
+                    id: 'B',
+                    answer:
+                      'Slavery created a power structure that defined morality for everyone',
+                  },
+                  {
+                    id: 'C',
+                    answer: 'Slavery was essential for the economy to prosper',
+                  },
+                ],
+                new UserModel(
+                  'AP US History',
+                  'https://cross-platform-rwa.rp.devfactory.com/avatars/apush.png'
+                )
+              )
+            }
+            answer={
+              new MultipleChoiceQuestionAnswerModel(6194, [
+                {
+                  id: 'A',
+                  answer:
+                    'Slavery gave black people a better life than if they lived in a free society"',
+                },
+              ])
+            }
+          />
+        )}
         <SafeAreaView edges={['bottom']} style={{ backgroundColor: 'black' }}>
           <BottomNavigationBar />
         </SafeAreaView>

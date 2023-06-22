@@ -8,7 +8,7 @@
     "components/**/*",
     "hooks/**/*",
     "api/**/*",
-    "models/**/*",
+    "types/**/*",
     "declarations.d.ts"
   ]
 }

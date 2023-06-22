@@ -1,4 +1,4 @@
-import FlashcardModel from '../models/flashcard-model';
+import FlashcardModel from '../types/flashcard-model';
 
 const fetchFlashcard = async (): Promise<FlashcardModel> => {
   const response = await fetch(
