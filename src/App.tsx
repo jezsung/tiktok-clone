@@ -7,6 +7,7 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { ActivityIndicator, View } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 
+import fetchFlashcard from './api/fetch-flashcard';
 import fetchMcq from './api/fetch-mcq';
 import fetchMcqAnswer from './api/fetch-mcq-answer';
 import BottomNavigationBar from './components/BottomNavigationBar';
@@ -14,16 +15,28 @@ import CountdownTimer from './components/CountdownTimer';
 import FlashcardList from './components/FlashcardList';
 import MultipleChoiceQuestion from './components/MultipleChoiceQuestion';
 import TabBar from './components/TabBar';
+import usePagination from './hooks/use-pagination';
+import FlashcardModel from './types/flashcard-model';
 import McqAnswerModel from './types/mcq-answer-model';
 import McqModel from './types/mcq-model';
 import SearchIcon from '../assets/icons/search.svg';
 
 export default function App() {
   const [tabIndex, setTabIndex] = useState(0);
+
+  const fetcher = useCallback(async () => {
+    // Fetches 3 flashcards for each call.
+    return Promise.all(Array.from({ length: 3 }, () => fetchFlashcard()));
+  }, []);
+  const [state, fetchFlashcards, fetchMoreFlashcards] =
+    usePagination<FlashcardModel[]>(fetcher);
+
   const [mcq, setMcq] = useState<McqModel | undefined>();
   const [mcqAnswer, setMcqAnswer] = useState<McqAnswerModel | undefined>();
 
   useEffect(() => {
+    fetchFlashcards();
+
     (async () => {
       const fetchedMcq = await fetchMcq();
       const fetchedMcqAnswer = await fetchMcqAnswer(fetchedMcq.id);
@@ -67,7 +80,13 @@ export default function App() {
           />
         </View>
       </SafeAreaView>
-      {tabIndex === 0 && <FlashcardList />}
+      {tabIndex === 0 && (
+        <FlashcardList
+          flashcards={state.pages.flat()}
+          onEndReached={fetchMoreFlashcards}
+          onEndReachedThreshold={1}
+        />
+      )}
       {tabIndex === 1 &&
         (mcq && mcqAnswer ? (
           <MultipleChoiceQuestion mcq={mcq} answer={mcqAnswer} />

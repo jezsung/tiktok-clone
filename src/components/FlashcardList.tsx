@@ -1,36 +1,19 @@
-import { useCallback, useState } from 'react';
-import { ActivityIndicator, FlatList, Text, View } from 'react-native';
+import { useState } from 'react';
+import { FlatList, View } from 'react-native';
 
 import Flashcard from './Flashcard';
-import fetchFlashcard from '../api/fetch-flashcard';
-import usePagination from '../hooks/use-pagination';
 import FlashcardModel from '../types/flashcard-model';
 
-const FlashcardList: React.FC = () => {
-  const fetcher = useCallback(async () => {
-    // Fetches 3 flashcards for each call.
-    return Promise.all(Array.from({ length: 3 }, () => fetchFlashcard()));
-  }, []);
-  const [state, fetchNextPage] = usePagination<FlashcardModel[]>(fetcher);
+const FlashcardList: React.FC<{
+  flashcards: FlashcardModel[];
+  onEndReached?: () => void;
+  onEndReachedThreshold?: number;
+}> = ({ flashcards, onEndReached, onEndReachedThreshold }) => {
   const [itemHeight, setItemHeight] = useState(512);
-
-  if (state.pages.length === 0) {
-    return <ActivityIndicator style={{ flex: 1 }} />;
-  }
-
-  if (state.status === 'error') {
-    return (
-      <View
-        style={{ flex: 1, flexDirection: 'column', justifyContent: 'center' }}
-      >
-        <Text>Something went wrong...</Text>
-      </View>
-    );
-  }
 
   return (
     <FlatList
-      data={state.pages.flat()}
+      data={flashcards}
       renderItem={({ item }) => {
         return (
           <View style={{ height: itemHeight }}>
@@ -40,9 +23,8 @@ const FlashcardList: React.FC = () => {
       }}
       // Suffixes the index to prevent duplicate keys for demo purpose.
       keyExtractor={(item, index) => item.id.toString() + index}
-      onEndReached={fetchNextPage}
-      onEndReachedThreshold={1}
-      refreshing={state.status === 'loading'}
+      onEndReached={onEndReached}
+      onEndReachedThreshold={onEndReachedThreshold}
       pagingEnabled
       onLayout={(event) => {
         setItemHeight(event.nativeEvent.layout.height);
